@@ -11,7 +11,7 @@ class MessageBoard extends React.Component {
               {[...this.props.message]
                 .reverse()
                 .map((message, index) =>
-                  index === 0 ? null : <p>{message}</p>
+                  index === 0 ? null : <p key={index}>{message}</p>
                 )}
             </div>
           </>

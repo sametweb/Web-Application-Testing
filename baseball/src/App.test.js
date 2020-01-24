@@ -1,4 +1,27 @@
-import { addStrike, addBall, addFoul, addHit } from "./App";
+import React from "react";
+import * as rtl from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
+
+import Dashboard from "./components/Dashboard";
+import App, { addStrike, addBall, addFoul, addHit } from "./App";
+
+test("dashboard renders 4 action buttons", () => {
+  const dashboard = rtl.render(<Dashboard />);
+  const buttons = dashboard.getAllByTestId("btn");
+
+  expect(buttons.length).toBe(4);
+});
+
+test("display renders balls and strikes labels", () => {
+  const display = rtl.render(<App />);
+  const balls = display.queryByText(/balls/i);
+  const strikes = display.queryByText(/strikes/i);
+  const game = display.queryByText(/game will start soon/i);
+
+  expect(balls).toBeInTheDocument();
+  expect(strikes).toBeInTheDocument();
+  expect(game).toBeInTheDocument();
+});
 
 //addStrike
 test("addStrike adds 1", () => {
